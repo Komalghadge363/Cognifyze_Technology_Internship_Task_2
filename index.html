@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body style="font-family: Arial, sans-serif;
+ background: url('image.jpeg');
+ margin: 0; 
+ padding: 20px; 
+ display: flex; 
+ justify-content: center;
+ align-items: center;
+  min-height: 100vh;">
+    
+    <div style="background:blur(0px);
+     padding: 30px; 
+     border-radius: 10px;
+     box-shadow: 0 0 15px rgba(74, 29, 29, 0.1);
+     width: 100%;
+     max-width: 500px;">
+
+        <h1 style="color: 
+        #ff0101; 
+        text-align: center; 
+        margin-bottom: 30px;">📝 User Registration Form</h1>
+        
+        <!-- Registration Form -->
+        <form id="registerForm">
+            <!-- Username Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block;
+                 margin-bottom: 8px; 
+                 font-weight: bold;
+                 color: white;">Username:</label>
+
+                <input type="text" id="username" name="username" 
+                       style="width: 100%; 
+                       padding: 12px;
+                       border: 2px solid;
+                       border-radius: 6px;
+                       font-size: 16px;"
+                       placeholder="Enter username">
+
+                <div id="usernameError" style="color: red;
+                 font-size: 14px; 
+                 margin-top: 5px; 
+                 display: none;">
+                </div>
+            </div>
+            
+            <!-- Email Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block;
+                 margin-bottom: 8px; 
+                 font-weight: bold; 
+                 color: white;">Email:
+                </label>
+
+                <input type="email" id="email" name="email" 
+                       style="width: 100%;
+                       padding: 12px;
+                       border: 2px solid;
+                       border-radius: 6px; 
+                       font-size: 16px;"
+                       placeholder="Enter email">
+
+                <div id="emailError" style="color: red; 
+                    font-size: 14px; 
+                    margin-top: 5px; 
+                    display: none;">
+                </div>
+            </div>
+            
+            <!-- Password Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block;
+                        margin-bottom: 8px;
+                        font-weight: bold; 
+                        color: white;">Password:
+                </label>
+
+                <input type="password" id="password" name="password" 
+                       style="width: 100%;
+                       padding: 12px; 
+                       border: 2px solid;
+                       border-radius: 6px;
+                       font-size: 16px;"
+                       placeholder="Enter password">
+
+                  <div id="passwordError" style="color: red; 
+                    font-size: 14px; 
+                    margin-top: 5px; 
+                    display: white;">
+                </div>
+            </div>
+            
+            <!-- Age Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block;
+                    margin-bottom: 8px;
+                    font-weight: bold; 
+                    color: white;">Age:
+                </label>
+
+                <input type="number" id="age" name="age" 
+                       style="width: 100%; 
+                       padding: 12px;
+                       border: 2px solid;
+                       border-radius: 6px; 
+                       font-size: 16px;"
+                       placeholder="Enter age">
+
+                <div id="ageError" style="color: red;
+                    font-size: 14px;
+                    margin-top: 5px; 
+                    display: white;">
+                </div>
+            </div>
+            
+            <!-- Gender Field -->
+            <div style="margin-bottom: 20px;">
+                <label style="display: block;
+                    margin-bottom: 8px;
+                    font-weight: bold; 
+                    color: #fff;">Gender:
+                </label>
+                <select id="gender" name="gender" style="width: 100%;
+                    padding: 12px; 
+                    border: 2px solid;
+                    border-radius: 6px;
+                    font-size: 16px;">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+                <div id="genderError" style="color: red; 
+                    font-size: 14px;
+                    margin-top: 5px; 
+                    display: none;">
+                </div>
+            </div>
+            
+            <!-- Terms & Conditions -->
+            <div style="margin-bottom: 25px;">
+                <label style="display: flex;
+                    align-items: center;
+                    cursor: pointer;">
+
+                    <input type="checkbox" id="terms" name="terms" style="margin-right: 10px;
+                        width: 18px;
+                        height: 18px;">
+                    <span style="color: #f60404;"><b>I agree to the Terms & Conditions</b></span>
+                </label>
+                <div id="termsError" style="color: red;
+                   font-size: 14px;
+                   margin-top: 5px;
+                   display: none;">
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="button" onclick="validateAndSubmit()" 
+                    style="width: 100%;
+                    padding: 14px;
+                    background:blur(0px);
+                    border: none;
+                    border-radius: 6px;
+                    font-size: 18px;
+                    cursor: pointer; 
+                    font-weight: bold;"
+                    onmouseover="this.style.background='#45a049'"
+                    onmouseout="this.style.background='#4CAF50'">Register Now
+            </button>
+        </form>
+        
+        <!-- Success Popup (Hidden by Default) -->
+        <div id="successPopup" style="display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgb(4, 252, 244);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;">
+
+            <div style="background: none;
+                padding: 30px; 
+                border-radius: 10px;
+                text-align: center; 
+                max-width: 400px;">
+
+                <div style="font-size: 60px; 
+                    color: none;
+                    margin-bottom: 20px;">✅
+                </div>
+
+                <h2 style="color: #f90000;
+                   margin-bottom: 15px;">Registration Successful!</h2>
+
+                <p style="color: #f80404;
+                   margin-bottom: 25px;">Your account has been created successfully.</p>
+
+                <button onclick="closePopup()" 
+                        style="padding: 10px 30px; 
+                        background: #4CAF50; 
+                        color: white;
+                        border: none; 
+                        border-radius: 5px;
+                        cursor: pointer; 
+                        font-size: 16px;">OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Client-side validation
+        function validateForm() {
+            let isValid = true;
+            
+            // Clear previous errors
+            document.querySelectorAll('[id$="Error"]').forEach(el => {
+                el.style.display = 'none';
+                el.textContent = '';
+            });
+            
+            // Reset borders
+            ['username', 'email', 'password', 'age', 'gender'].forEach(id => {
+                document.getElementById(id).style.borderColor = '#ddd';
+            });
+            
+            // Validate Username
+            const username = document.getElementById('username').value.trim();
+            if (!username) {
+                showError('username', 'Username is required');
+                isValid = false;
+            } else if (username.length < 3) {
+                showError('username', 'Username must be at least 3 characters');
+                isValid = false;
+            }
+            
+            // Validate Email
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!email) {
+                showError('email', 'Email is required');
+                isValid = false;
+            } else if (!emailPattern.test(email)) {
+                showError('email', 'Please enter a valid email');
+                isValid = false;
+            }
+            
+            // Validate Password
+            const password = document.getElementById('password').value;
+            if (!password) {
+                showError('password', 'Password is required');
+                isValid = false;
+            } else if (password.length < 6) {
+                showError('password', 'Password must be at least 6 characters');
+                isValid = false;
+            }
+            
+            // Validate Age
+            const age = document.getElementById('age').value;
+            if (!age) {
+                showError('age', 'Age is required');
+                isValid = false;
+            } else if (age < 18) {
+                showError('age', 'You must be at least 18 years old');
+                isValid = false;
+            } else if (age > 100) {
+                showError('age', 'Age must be 100 or less');
+                isValid = false;
+            }
+            
+            // Validate Gender
+            const gender = document.getElementById('gender').value;
+            if (!gender) {
+                showError('gender', 'Please select your gender');
+                isValid = false;
+            }
+            
+            // Validate Terms
+            const terms = document.getElementById('terms').checked;
+            if (!terms) {
+                showError('terms', 'You must agree to the terms & conditions');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function showError(field, message) {
+            const errorEl = document.getElementById(field + 'Error');
+            const inputEl = document.getElementById(field);
+            
+            errorEl.textContent = message;
+            errorEl.style.display = 'block';
+            inputEl.style.borderColor = 'red';
+        }
+        
+        async function validateAndSubmit() {
+            // Client-side validation
+            if (!validateForm()) {
+                alert("Please fix the errors in the form.");
+                return;
+            }
+            
+            // Collect form data
+            const formData = {
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                age: document.getElementById('age').value,
+                gender: document.getElementById('gender').value,
+                terms: document.getElementById('terms').checked,
+                timestamp: new Date().toISOString()
+            };
+            
+            try {
+                // Send to server for validation
+                const response = await fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success popup
+                    showSuccessPopup();
+                    
+                    // Reset form
+                    document.getElementById('registerForm').reset();
+                    
+                    // Reset all borders
+                    ['username', 'email', 'password', 'age', 'gender'].forEach(id => {
+                        document.getElementById(id).style.borderColor = '#ddd';
+                    });
+                    
+                    // Log stored data to console
+                    console.log('Stored data:', result.storedData);
+                } else {
+                    // Show server-side errors
+                    if (result.errors) {
+                        Object.keys(result.errors).forEach(field => {
+                            showError(field, result.errors[field]);
+                        });
+                        alert("Server validation failed. Please check the form.");
+                    }
+                }
+            } catch (error) {
+                alert("Error submitting form. Please try again.");
+                console.error('Submission error:', error);
+            }
+        }
+        
+        function showSuccessPopup() {
+            document.getElementById('successPopup').style.display = 'flex';
+        }
+        
+        function closePopup() {
+            document.getElementById('successPopup').style.display = 'none';
+        }
+        
+        // Add real-time validation on input
+        document.getElementById('username').addEventListener('blur', () => {
+            const username = document.getElementById('username').value.trim();
+            if (username && username.length < 3) {
+                showError('username', 'Username must be at least 3 characters');
+            }
+        });
+        
+        document.getElementById('email').addEventListener('blur', () => {
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailPattern.test(email)) {
+                showError('email', 'Please enter a valid email');
+            }
+        });
+        
+        document.getElementById('password').addEventListener('blur', () => {
+            const password = document.getElementById('password').value;
+            if (password && password.length < 6) {
+                showError('password', 'Password must be at least 6 characters');
+            }
+        });
+        
+        document.getElementById('age').addEventListener('blur', () => {
+            const age = document.getElementById('age').value;
+            if (age && age < 18) {
+                showError('age', 'You must be at least 18 years old');
+            }
+        });
+    </script>
+</body>
+</html>   
